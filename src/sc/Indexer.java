@@ -16,6 +16,7 @@ package sc;
 */
 
 import org.apache.lucene.index.IndexWriter;
+import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
@@ -62,11 +63,9 @@ public class Indexer {
 
   public Indexer(String indexDir) throws IOException {
     Directory dir = FSDirectory.open((new File(indexDir)) .toPath() );
+	IndexWriterConfig conf = new IndexWriterConfig(new StandardAnalyzer(  ));
 	writer = new IndexWriter(dir,            //3
-                 new StandardAnalyzer(       //3
-                      ),//3
-                 true,                       //3
-                             IndexWriter.MaxFieldLength.UNLIMITED); //3
+                 conf); //3
   }
 
   public void close() throws IOException {
