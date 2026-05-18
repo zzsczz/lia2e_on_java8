@@ -21,6 +21,7 @@ import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.document.TextField;
+import org.apache.lucene.document.StringField;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.util.Version;
@@ -106,10 +107,8 @@ public class Indexer {
     doc.add(new TextField("contents", reader)); 
 
 	
-	doc.add(new Field("filename", f.getName(),              //8
-                Field.Store.YES, Field.Index.NOT_ANALYZED));//8
-    doc.add(new Field("fullpath", f.getCanonicalPath(),     //9
-                Field.Store.YES, Field.Index.NOT_ANALYZED));//9
+	doc.add(new StringField("filename", f.getName() , Field.Store.NO ) );//8
+    doc.add(new StringField("fullpath", f.getCanonicalPath() ,Field.Store.NO ) );//9
     return doc;
   }
 
