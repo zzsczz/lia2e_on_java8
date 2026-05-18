@@ -1,7 +1,4 @@
-﻿simple proj with ant
+﻿build  Lucene In Action 2E souce  with lucene8.x with java8.
 
-java utf-8
+copy lucene-core-8.x.jar to lib directory and run "ant Indexer".
 
-readme utf-8 + bom
-
-ant build.xml
