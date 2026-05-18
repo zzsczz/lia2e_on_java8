@@ -87,7 +87,8 @@ public class Indexer {
       }
     }
 
-    return writer.numDocs();                     //5
+   // return writer.numDocs();                     //5
+   return writer.numRamDocs();
   }
 
   private static class TextFilesFilter implements FileFilter {
