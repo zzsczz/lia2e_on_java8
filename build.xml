@@ -1,0 +1,19 @@
+﻿<project name ="app1" default = "compile">
+
+<target name = "compile">
+<javac srcdir="src" destdir="classes">
+</javac>
+</target>
+
+
+<target name="run">
+<java classname = "j1">
+
+<classpath>
+<pathelement location="./classes" />
+</classpath>
+</java>
+</target>
+
+
+</project>
