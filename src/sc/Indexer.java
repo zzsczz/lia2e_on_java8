@@ -20,6 +20,7 @@ import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
+import org.apache.lucene.document.TextField;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.util.Version;
@@ -28,7 +29,7 @@ import java.io.File;
 import java.io.FileFilter;
 import java.io.IOException;
 import java.io.FileReader;
-
+import java.io.Reader;
 // From chapter 1
 
 /**
@@ -100,8 +101,12 @@ public class Indexer {
 
   protected Document getDocument(File f) throws Exception {
     Document doc = new Document();
-    doc.add(new Field("contents", new FileReader(f)));      //7
-    doc.add(new Field("filename", f.getName(),              //8
+    //doc.add(new Field("contents", new FileReader(f)));      //7
+	Reader reader = new FileReader(f);
+    doc.add(new TextField("contents", reader)); 
+
+	
+	doc.add(new Field("filename", f.getName(),              //8
                 Field.Store.YES, Field.Index.NOT_ANALYZED));//8
     doc.add(new Field("fullpath", f.getCanonicalPath(),     //9
                 Field.Store.YES, Field.Index.NOT_ANALYZED));//9
