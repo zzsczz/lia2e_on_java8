@@ -18,6 +18,35 @@
 		</fileset>
 </path>
 
+
+
+  <macrodef name="run-main">
+    <attribute name="class"/>
+    <attribute name="spawn" default="no"/>
+    <element name="args" optional="yes"/>
+
+    <sequential>
+      <echo>Running @{class}...</echo>
+      <java classname="@{class}" fork="true" spawn="@{spawn}">
+        <sysproperty key="index.dir" file="${build.dir}/index"/>
+        <args/>
+        <classpath>
+          <path refid="run.classpath"/>
+          <!--pathelement location="${build.dir}/classes"/-->
+        </classpath>
+      </java>
+    </sequential>
+  </macrodef>
+
+  <macrodef name="info">
+    <text name="text"/>
+    <sequential>
+      <echo level="info">@{text}</echo>
+      <input addProperty="nopause" message="Press return to continue..."/>
+    </sequential>
+  </macrodef>
+
+
 <target name="print-classpath">
 	<pathconvert property="classpathInName" refid="run.classpath" />
 	<echo>Classpath is ${classpathInName}</echo>
@@ -44,6 +73,47 @@
 </target>
 
 
+
+
+
+  <!--
+     M e e t   L u c e n e   depends="prepare"
+  -->
+  <target name="Indexer" 
+          description="Indexes a directory of .txt files">
+    <info>
+      Index *.txt files in a directory into a Lucene index.  Use the
+      Searcher target to search this index.
+
+      Indexer is covered in the "Meet Lucene" chapter.
+    </info>
+
+    <input message="Directory for new Lucene index:"
+           addProperty="index.dir"
+           defaultValue="indexes/MeetLucene"
+    />
+
+    <input message="Directory with .txt files to index:"
+           addProperty="text.dir"
+           defaultValue="src/sc/data"
+    />
+
+    <input message="Overwrite ${index.dir}?"
+           validargs="y,n"
+           addproperty="confirm.overwrite"
+    />
+    <condition property="abort">
+      <equals arg1="n" arg2="${confirm.overwrite}"/>
+    </condition>
+    <fail if="abort">Aborted.</fail>
+
+    <run-main class="sc.Indexer">
+      <args>
+        <arg file="${index.dir}"/>
+        <arg file="${text.dir}"/>
+      </args>
+    </run-main>
+  </target>
 
 
 </project>
