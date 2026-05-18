@@ -1,4 +1,4 @@
-package lia.meetlucene;
+package sc;
 
 /**
  * Copyright Manning Publications Co.
@@ -61,10 +61,10 @@ public class Indexer {
   private IndexWriter writer;
 
   public Indexer(String indexDir) throws IOException {
-    Directory dir = FSDirectory.open(new File(indexDir));
-    writer = new IndexWriter(dir,            //3
+    Directory dir = FSDirectory.open((new File(indexDir)) .toPath() );
+	writer = new IndexWriter(dir,            //3
                  new StandardAnalyzer(       //3
-                     Version.LUCENE_30),//3
+                      ),//3
                  true,                       //3
                              IndexWriter.MaxFieldLength.UNLIMITED); //3
   }
