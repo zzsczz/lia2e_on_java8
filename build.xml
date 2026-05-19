@@ -1,4 +1,4 @@
-﻿<project name ="app1" default = "compile">
+﻿<project xmlns:ivy="antlib:org.apache.ivy.ant" name ="app1" default = "compile">
 
 <property name="lib.dir" value="lib"/>
 <property name="classes.dir" value="classes"/>
@@ -45,6 +45,17 @@
       <input addProperty="nopause" message="Press return to continue..."/>
     </sequential>
   </macrodef>
+
+
+
+    <!-- =================================
+          target: resolve
+         ================================= -->
+    <target name="resolve" description="--> retrieve dependencies with Ivy">
+        <ivy:retrieve/>
+    </target>
+
+
 
 
 <target name="print-classpath">
