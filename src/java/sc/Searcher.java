@@ -32,6 +32,8 @@ import org.apache.lucene.util.Version;
 import java.io.File;
 import java.io.IOException;
 
+import org.apache.lucene.index.DirectoryReader;
+import org.apache.lucene.index.IndexReader;
 // From chapter 1
 
 /**
@@ -56,13 +58,18 @@ public class Searcher {
   public static void search(String indexDir, String q)
     throws IOException, ParseException {
 
-    Directory dir = FSDirectory.open(new File(indexDir)); //3
-    IndexSearcher is = new IndexSearcher(dir);   //3   
+    Directory dir = FSDirectory.open( (new File(indexDir) ).toPath() ); //3
+	IndexReader reader = DirectoryReader.open(dir);
 
-    QueryParser parser = new QueryParser(Version.LUCENE_30, // 4
+    IndexSearcher is = new IndexSearcher(reader);   //3   
+  /*QueryParser parser = new QueryParser(Version.LUCENE_30, // 4
                                          "contents",  //4
                      new StandardAnalyzer(          //4
                        Version.LUCENE_30));  //4
+					   */
+	Analyzer analyzer = new StandardAnalyzer();
+	QueryParser parser = new QueryParser("content", analyzer);
+
     Query query = parser.parse(q);              //4   
     long start = System.currentTimeMillis();
     TopDocs hits = is.search(query, 10); //5
