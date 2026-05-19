@@ -69,7 +69,7 @@ public class Searcher {
                        Version.LUCENE_30));  //4
 					   */
 	Analyzer analyzer = new StandardAnalyzer();
-	QueryParser parser = new QueryParser("content", analyzer);
+	QueryParser parser = new QueryParser("contents", analyzer);
 
     Query query = parser.parse(q);              //4   
     long start = System.currentTimeMillis();

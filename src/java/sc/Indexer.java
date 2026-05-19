@@ -58,7 +58,7 @@ public class Indexer {
     long end = System.currentTimeMillis();
 
     System.out.println("Indexing " + numIndexed + " files took "
-      + (end - start) + " milliseconds");
+      + (end - start) + " milliseconds!");
   }
 
   private IndexWriter writer;
@@ -107,8 +107,8 @@ public class Indexer {
     doc.add(new TextField("contents", reader)); 
 
 	
-	doc.add(new StringField("filename", f.getName() , Field.Store.NO ) );//8
-    doc.add(new StringField("fullpath", f.getCanonicalPath() ,Field.Store.NO ) );//9
+	doc.add(new StringField("filename", f.getName() , Field.Store.YES ) );//8
+    doc.add(new StringField("fullpath", f.getCanonicalPath() ,Field.Store.YES ) );//9
     return doc;
   }
 

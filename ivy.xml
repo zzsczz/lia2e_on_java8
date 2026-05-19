@@ -2,12 +2,12 @@
     <info organisation="org.apache" module="hello-ivy"/>
     <dependencies>
 <!-- Source: https://mvnrepository.com/artifact/org.apache.lucene/lucene-core -->
-<dependency org="org.apache.lucene" name="lucene-core" rev="8.11.4"/>
+<dependency org="org.apache.lucene" name="lucene-core" rev="8.0.0"/>
 <!-- Source: https://mvnrepository.com/artifact/org.apache.lucene/lucene-queryparser -->
-<dependency org="org.apache.lucene" name="lucene-queryparser" rev="8.11.4"/>
+<dependency org="org.apache.lucene" name="lucene-queryparser" rev="8.0.0"/>
 
-<!-- Source: https://mvnrepository.com/artifact/org.apache.lucene/lucene-analyzers-common -->
-<dependency org="org.apache.lucene" name="lucene-analyzers-common" rev="8.11.4"/>  
+<!-- Source: https://mvnrepository.com/artifact/org.apache.lucene/lucene-analyzers-common   -->
+<dependency org="org.apache.lucene" name="lucene-analyzers-common" rev="8.0.0"/>
 
     </dependencies>
 </ivy-module>
