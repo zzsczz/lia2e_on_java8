@@ -127,4 +127,33 @@
   </target>
 
 
+
+<!--  depends="prepare"-->
+  <target name="Searcher" 
+          description="Searches an index built by Indexer">
+    <info>
+      Search an index built using Indexer.
+
+      Searcher is described in the "Meet Lucene" chapter.
+    </info>
+
+    <input message="Directory of existing Lucene index built by Indexer: "
+           addProperty="index.dir"
+           defaultValue="indexes/MeetLucene"
+    />
+
+    <input message="Query: "
+           addProperty="query"
+           defaultValue="patent"
+    />
+
+    <run-main class="sc.Searcher">
+      <args>
+        <arg file="${index.dir}"/>
+        <arg value="${query}"/>
+      </args>
+    </run-main>
+  </target>
+
+
 </project>

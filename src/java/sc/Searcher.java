@@ -34,6 +34,7 @@ import java.io.IOException;
 
 import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexReader;
+import org.apache.lucene.analysis.Analyzer;
 // From chapter 1
 
 /**
@@ -85,7 +86,8 @@ public class Searcher {
       System.out.println(doc.get("fullpath"));  //8  
     }
 
-    is.close();                                //9
+    //is.close();                                //9
+	reader.close();
   }
 }
 
